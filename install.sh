@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo apt install -y ansible git
+apt install -y ansible git
