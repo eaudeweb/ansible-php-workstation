@@ -1,0 +1,6 @@
+---
+- name: Install Google Chrome
+  hosts: localhost
+  roles:
+    - google-chrome
+
