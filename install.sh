@@ -7,4 +7,5 @@ if [ ! -d ansible-php-workstation ]; then
 fi
 
 cd ansible-deskop
+ansible-galaxy install -r requirements.yml
 ansible-playbook playbook.yml

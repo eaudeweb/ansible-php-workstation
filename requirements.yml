@@ -1,0 +1,5 @@
+---
+
+- name: edw_php
+  src: https://github.com/eaudeweb/edw_php.git
+  scm: git
