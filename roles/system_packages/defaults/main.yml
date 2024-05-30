@@ -1,49 +1,48 @@
 ---
-system_packages: [
-  "build-essential",
-  "bzip2",
-  "dos2unix",
-  "figlet",
-  "firefox",
-  "flatpak",
-  "gimp",
-  "git",
-  "gitk",
-  "htop",
-  "hwdata",
-  "inetutils-traceroute",
-  "mc",
-  "mkcert",
-  "mtools",
-  "net-tools",
-  "nftables",
-  "nmap",
-  "ntp",
-  "nvme-cli",
-  "openjdk-11-jre-headless",
-  "openjdk-11-jre",
-  "openjdk-19-jre",
-  "openssl",
-  "p7zip-full",
-  "passwd",
-  "python3-pip",
-  "python3-virtualenv",
-  "pwgen",
-  "remmina",
-  "remmina-plugin-rdp",
-  "remmina-plugin-vnc",
-  "remmina-plugin-exec",
-  "s3fs",
-  "screenruler",
-  "siege",
-  "simplescreenrecorder",
-  "tcpdump",
-  "telnet",
-  "telnet",
-  "vim",
-  "vim-common",
-  "warpinator",
-  "wget",
-  "wkhtmltopdf",
-  "zip"
-]
+system_packages:
+  - build-essential
+  - bzip2
+  - dos2unix
+  - figlet
+  - firefox
+  - flatpak
+  - gimp
+  - git
+  - gitk
+  - htop
+  - hwdata
+  - inetutils-traceroute
+  - mc
+  - mkcert
+  - mtools
+  - net-tools
+  - nftables
+  - nmap
+  - ntp
+  - nvme-cli
+  - openjdk-11-jre-headless
+  - openjdk-11-jre
+  - openjdk-19-jre
+  - openssl
+  - p7zip-full
+  - passwd
+  - python3-pip
+  - python3-virtualenv
+  - pwgen
+  - remmina
+  - remmina-plugin-rdp
+  - remmina-plugin-vnc
+  - remmina-plugin-exec
+  - s3fs
+  - screenruler
+  - siege
+  - simplescreenrecorder
+  - tcpdump
+  - telnet
+  - telnet
+  - vim
+  - vim-common
+  - warpinator
+  - wget
+  - wkhtmltopdf
+  - zip
