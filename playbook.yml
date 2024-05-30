@@ -1,6 +1,31 @@
 ---
-- name: Install Google Chrome
+# - name: Install system packages
+#   hosts: localhost
+#   roles:
+#     - system_packages
+
+# - name: Install Google Chrome
+#   hosts: localhost
+#   roles:
+#     - google_chrome
+
+- name: Install PHP 8.2
   hosts: localhost
   roles:
-    - system_packages
-    - google_chrome
+    - edw_php
+  vars:
+    - php_version: 8.2
+
+- name: Install PHP 8.1
+  hosts: localhost
+  roles:
+    - edw_php
+  vars:
+    - php_version: 8.1
+
+- name: Install PHP 7.4
+  hosts: localhost
+  roles:
+    - edw_php
+  vars:
+    - php_version: 7.4
