@@ -3,7 +3,7 @@
 Open a console on the remote server where you want to provision the system and run the following command:
 
 ```bash
-curl https://raw.githubusercontent.com/eaudeweb/ansible-php-workstation/main/install.sh | sudo bash
+curl https://raw.githubusercontent.com/eaudeweb/ansible-php-workstation/main/install.sh | bash
 ```
 
 

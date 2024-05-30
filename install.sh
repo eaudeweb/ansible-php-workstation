@@ -8,4 +8,4 @@ fi
 
 cd ansible-deskop
 ansible-galaxy install -r requirements.yml
-ansible-playbook playbook.yml
+ansible-playbook -b -K playbook.yml
