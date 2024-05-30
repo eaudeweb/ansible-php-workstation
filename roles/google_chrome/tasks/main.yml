@@ -12,8 +12,8 @@
   when: google_apt_exists
 
 - name: Add Google Chrome repository
-  copy: 
-    content: "deb http://dl.google.com/linux/chrome/deb/ stable main" 
+  copy:
+    content: "deb http://dl.google.com/linux/chrome/deb/ stable main"
     dest: "{{ google_chrome_apt_file }}"
     owner: "root"
     group: "root"

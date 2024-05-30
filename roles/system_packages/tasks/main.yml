@@ -2,7 +2,7 @@
 - name: Install system packages and utils
   ansible.builtin.apt:
     name: "{{ system_packages }}"
-    state: "latest"
+    state: "present"
     update_cache: true
     autoclean: true
     cache_valid_time: 5400
