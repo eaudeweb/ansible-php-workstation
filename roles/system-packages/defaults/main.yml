@@ -1,0 +1,22 @@
+---
+system_packages: [
+  "build-essential",
+  "bzip2",
+  "mc"
+  "ntp",
+  "openssl",
+  "git",
+  "telnet",
+  "figlet",
+  "git-core",
+  "htop",
+  "wget",
+  "python3-pip",
+  "zip",
+  "vim",
+  "vim-common",
+  "curl",
+  "git",
+  "rsyslog",
+  "libjson-xs-perl",
+]

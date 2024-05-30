@@ -1,0 +1,7 @@
+---
+- name: install system packages and utils
+  apt:
+    pkg: "{{ packages }}"
+    state: "present"
+    update_cache: true
+    cache_valid_time: 5400
