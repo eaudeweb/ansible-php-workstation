@@ -4,6 +4,5 @@
     name: "{{ system_packages }}"
     state: "latest"
     update_cache: true
-    clean: true
     autoclean: true
     cache_valid_time: 5400
