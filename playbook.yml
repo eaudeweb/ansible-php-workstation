@@ -2,6 +2,5 @@
 - name: Install Google Chrome
   hosts: localhost
   roles:
-    - system-packages
-    - google-chrome
-
+    - system_packages
+    - google_chrome
