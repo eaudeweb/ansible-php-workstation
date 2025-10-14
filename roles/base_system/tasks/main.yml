@@ -1,8 +1,43 @@
 ---
+- name: Update base system
+  ansible.builtin.apt:
+    autoclean: yes
+    autoremove: yes
+    name: "*"
+    state: latest
+
 - name: Install system packages and utils
   ansible.builtin.apt:
-    name: "{{ system_packages }}"
+    name: "{{ base_packages }}"
     state: "present"
     update_cache: true
     autoclean: true
     cache_valid_time: 5400
+
+# TODO: Only when browser_packages
+- name: Brave browser keyring
+  ansible.builtin.apt_key:
+    url: 'https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg'
+    keyring: '/usr/share/keyrings/brave-browser-archive-keyring.gpg'
+
+# TODO: Only when browser_packages
+- name: Brave browser apt repo
+  ansible.builtin.get_url:
+    url: 'https://brave-browser-apt-release.s3.brave.com/brave-browser.sources'
+    dest: '/etc/apt/sources.list.d/brave-browser-release.sources'
+
+# TODO: Only when new repositories
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+
+# TODO: Only when browser_packages
+- name: Install browser packages
+  ansible.builtin.apt:
+    name: "{{ browser_packages }}"
+    state: "present"
+
+- name: Install DBeaver CE
+  ansible.builtin.apt:
+    deb: "{{ dbeaver_ce_url }}"
+    state: "present"

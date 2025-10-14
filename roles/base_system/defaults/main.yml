@@ -1,9 +1,8 @@
 ---
-system_packages:
+base_packages:
   - build-essential
   - bzip2
   - dos2unix
-  - firefox
   - gimp
   - git
   - gitk
@@ -34,3 +33,9 @@ system_packages:
   - wget
   - wkhtmltopdf
   - zip
+
+browser_packages:
+  - firefox
+  - brave-browser
+
+dbeaver_ce_url: 'https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb'
