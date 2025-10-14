@@ -19,9 +19,15 @@ base_packages:
   - nvme-cli
   - openssl
   - p7zip-full
+  - pigz
   - python3-pip
   - python3-virtualenv
   - pwgen
+  - remmina-common
+  - remmina-plugin-rdp
+  - remmina-plugin-secret
+  - remmina-plugin-vnc
+  - remmina
   - screenruler
   - siege
   - simplescreenrecorder

@@ -6,7 +6,7 @@
     name: "*"
     state: latest
 
-- name: Install system packages and utils
+- name: Install base packages and utils
   ansible.builtin.apt:
     name: "{{ base_packages }}"
     state: "present"
@@ -41,3 +41,16 @@
   ansible.builtin.apt:
     deb: "{{ dbeaver_ce_url }}"
     state: "present"
+
+# update-alternatives --force --install /usr/bin/gzip gzip /usr/bin/pigz 10
+
+- name: Copy /usr/bin/gzip to /usr/bin/gzip.original
+  command: mv /usr/bin/gzip /usr/bin/gzip.original creates=/usr/bin/gzip.original
+
+- name: Configure pigz as default gzip
+  community.general.alternatives:
+    name: gzip
+    path: /usr/bin/pigz
+    link: /usr/bin/gzip
+    priority: 50
+    state: selected
