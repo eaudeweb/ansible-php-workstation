@@ -1,0 +1,45 @@
+- name: Remove unofficial packages
+  ansible.builtin.apt:
+    name: "{{ docker_unofficial_packages }}"
+    state: "absent"
+
+- name: Docker support packages
+  ansible.builtin.apt:
+    name: "{{ docker_support_packages }}"
+    state: "present"
+
+
+- name: Docker keyring
+  ansible.builtin.get_url:
+    url: 'https://download.docker.com/linux/ubuntu/gpg'
+    dest: '/etc/apt/keyrings/docker.asc'
+
+- name: Install Docker apt repo
+  ansible.builtin.shell: |
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+- name: Update apt cache for Docker
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Docker packages
+  ansible.builtin.apt:
+    name: "{{ docker_packages }}"
+    state: "present"
+
+- name: Start and enable Docker daemon
+  become: yes
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Start and enable containerd daemon
+  become: yes
+  service:
+    name: containerd
+    state: started
+    enabled: yes
