@@ -9,18 +9,19 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
-- Create sysadmin user and set a complex password (You only need it once to copy the SSH key)
+- Create sysadmin user and set a complex password (You'll only need it now to configure sudo/SSH - no need to remember)
 ```
-useradd -m -g sudo edw-sysadmin
-passwd edw-sysadmin
+sudo useradd -m -g sudo edw-sysadmin
+sudo passwd edw-sysadmin
 ```
 
 - Configure sudo group without password in /etc/sudoers
 ```
+sudo su edw-sysadmin
 echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prompt-$USER-for-sudo-password"
 ```
 
-2. Instal edw-sysadmin SSH access
+2. Instal edw-sysadmin SSH access (from on your computer)
 
 - Install SSH key
 ```

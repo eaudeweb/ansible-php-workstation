@@ -1,8 +1,9 @@
 - name: Install system packages
   hosts: all
   roles:
-    - base_system
-    - docker
+#    - base_system
+#    - docker
+    - php
 
 
 # - name: Install Google Chrome

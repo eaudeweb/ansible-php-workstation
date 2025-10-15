@@ -1,0 +1,157 @@
+- name: Create a temporary file
+  ansible.builtin.tempfile:
+    prefix: .fetched_
+    state: file
+  register: tempfile
+
+- name: Fetch os-release
+  ansible.builtin.fetch:
+    src: /etc/os-release
+    dest: "{{ tempfile.path }}"
+    flat: yes
+  register: fetched
+
+- name: Set Ubuntu Code Name
+  set_fact:
+    ubuntu_codename: "{{ lookup('ini', 'UBUNTU_CODENAME type=properties file=' + fetched.dest) }}"
+
+- name: Add PHP PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:ondrej/php
+    codename: '{{ ubuntu_codename }}'
+
+- name: Update apt cache for PHP
+  ansible.builtin.apt:
+    update_cache: true
+
+# 7.4
+
+- name: Install PHP 7.4
+  ansible.builtin.apt:
+    name: "{{ php74_packages }}"
+    state: "present"
+
+- name: Configure PHP 7.4 default settings
+  community.general.ini_file:
+    dest: "{{ php74_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_default_settings }}"
+
+- name: Configure PHP 7.4 FPM www.conf
+  community.general.ini_file:
+    dest: "{{ php74_pool_www_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_www_pool }}"
+  vars:
+    php_version: '7.4'
+
+- name: Apply php-fpm.conf settings
+  community.general.ini_file:
+    dest: "{{ php74_fpm_conf }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_conf_settings }}"
+
+# 8.1
+
+- name: Install PHP 8.1
+  ansible.builtin.apt:
+    name: "{{ php81_packages }}"
+    state: "present"
+
+- name: Configure PHP 8.1 php.ini
+  community.general.ini_file:
+    dest: "{{ php81_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_default_settings }}"
+
+- name: Configure PHP 8.1 FPM www.conf
+  community.general.ini_file:
+    dest: "{{ php81_pool_www_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_www_pool }}"
+  vars:
+    php_version: '8.1'
+
+- name: Apply PHP 8.1 php-fpm.conf settings
+  community.general.ini_file:
+    dest: "{{ php81_fpm_conf }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_conf_settings }}"
+
+# 8.2
+
+- name: Install PHP 8.2
+  ansible.builtin.apt:
+    name: "{{ php82_packages }}"
+    state: "present"
+
+- name: Configure PHP 8.2 default settings
+  community.general.ini_file:
+    dest: "{{ php82_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_default_settings }}"
+
+- name: Configure PHP 8.2 FPM www.conf
+  community.general.ini_file:
+    dest: "{{ php82_pool_www_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_www_pool }}"
+  vars:
+    php_version: '8.2'
+
+- name: Apply PHP 8.2 php-fpm.conf settings
+  community.general.ini_file:
+    dest: "{{ php82_fpm_conf }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_conf_settings }}"
+
+# 8.3
+
+- name: Install PHP 8.3
+  ansible.builtin.apt:
+    name: "{{ php83_packages }}"
+    state: "present"
+
+- name: Configure PHP 8.3 default settings
+  community.general.ini_file:
+    dest: "{{ php83_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_default_settings }}"
+
+- name: Configure PHP 8.3 FPM www.conf
+  community.general.ini_file:
+    dest: "{{ php83_pool_www_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_www_pool }}"
+  vars:
+    php_version: '8.3'
+
+- name: Apply PHP 8.3 php-fpm.conf settings
+  community.general.ini_file:
+    dest: "{{ php83_fpm_conf }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+    section: "{{ item.section }}"
+  with_items: "{{ php_fpm_conf_settings }}"

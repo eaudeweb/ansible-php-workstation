@@ -1,5 +1,6 @@
 ---
 base_packages:
+  - apache2-utils
   - build-essential
   - bzip2
   - dos2unix
