@@ -5,6 +5,7 @@
     - docker
     - php
     - docker.sidekick
+    - nginx
 
 # - name: Install Google Chrome
 #   hosts: localhost

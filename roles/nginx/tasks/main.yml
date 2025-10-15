@@ -1,0 +1,41 @@
+- name: NGINX package
+  ansible.builtin.apt:
+    name: "nginx"
+    state: "present"
+
+- name: Copy NGINX extra directory
+  ansible.builtin.copy:
+    src: extra
+    dest: /etc/nginx/conf.d/
+
+- name: Copy NGINX projects
+  ansible.builtin.template:
+    src: projects.j2
+    dest: /etc/nginx/conf.d/projects.conf
+    mode: 0644
+
+- name: Copy welcome virtual host
+  ansible.builtin.copy:
+    src: index.php
+    dest: "/home/{{ linux_account }}/Work/welcome/"
+    owner: "{{ linux_account }}"
+    group: "{{ linux_account }}"
+
+- name: Make www-data part of user's group
+  user: name=www-data
+        groups={{ linux_account }}
+        append=yes
+
+- name: Start and enable NGINX daemon
+  become: yes
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Start and enable NGINX daemon
+  become: yes
+  service:
+    name: nginx
+    state: started
+    enabled: yes

@@ -1,0 +1,13 @@
+include conf.d/extra/upstream.conf;
+
+server {
+    listen 0.0.0.0:80;
+    server_name welcome.localhost;
+    root /home/{{ linux_account }}/Work/welcome;
+
+    index       index.php;
+
+    set $fpm    php83;
+    include conf.d/extra/defaults.conf;
+    include conf.d/extra/appserver.conf;
+}
