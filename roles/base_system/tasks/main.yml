@@ -54,3 +54,10 @@
     link: /usr/bin/gzip
     priority: 50
     state: selected
+
+- name: Create user Work directory
+  ansible.builtin.file:
+    path: "/home/{{ linux_account }}/Work"
+    state: directory
+    mode: "0755"
+    owner: "{{ linux_account }}"

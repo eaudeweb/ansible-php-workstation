@@ -1,10 +1,10 @@
 - name: Install system packages
   hosts: all
   roles:
-#    - base_system
-#    - docker
+    - base_system
+    - docker
     - php
-
+    - docker.sidekick
 
 # - name: Install Google Chrome
 #   hosts: localhost

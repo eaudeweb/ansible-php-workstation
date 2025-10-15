@@ -1,0 +1,15 @@
+- name: Create user Work directory
+  ansible.builtin.file:
+    path: "/home/{{ linux_account }}/Work"
+    state: directory
+    mode: "0755"
+    owner: "{{ linux_account }}"
+    group: "{{ linux_account }}"
+
+- name: Checkout sidekick
+  ansible.builtin.git:
+    repo: "https://github.com/eaudeweb/drupal.sidekick.git"
+    dest: "/home/{{ linux_account }}/Work/drupal.sidekick"
+    force: true
+  become: yes
+  become_user: "{{ linux_account }}"
