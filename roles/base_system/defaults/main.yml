@@ -4,6 +4,7 @@ base_packages:
   - build-essential
   - bzip2
   - dos2unix
+  - flameshot
   - gimp
   - git
   - gitk

@@ -61,3 +61,13 @@
     state: directory
     mode: "0755"
     owner: "{{ linux_account }}"
+
+- name: Install Discord
+  ansible.builtin.apt:
+    deb: "https://discord.com/api/download?platform=linux"
+    state: "present"
+
+- name: Install VSCode
+  ansible.builtin.apt:
+    deb: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    state: "present"
