@@ -1,6 +1,8 @@
 # How to use this repository
 
-1. Configure SSH to the target computer
+1. You need to have a clean computer with Linux Mint 22.02 installed (might work with other similar versions too).
+
+2. Configure SSH to the target computer
 
 - Install SSH daemon on remote computer
 ```
@@ -28,8 +30,10 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prompt-
 ssh-copy-id -i ~/.ssh/id_ed25519.pub edw-sysadmin@192.168.56.3
 ```
 
-3. Provision work computer
+3. Clone this repository and provision the target computer computer:
 
 ```bash
+$> git clone https://github.com/eaudeweb/ansible-php-workstation.git
+$> cd ansible-php-workstation
 $> ansible-playbook -i hosts.yml -b playbook.yml -l 192.168.56.3 --extra-vars "linux_account=cromanescu"
 ```
