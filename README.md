@@ -29,13 +29,13 @@ $> echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prom
 
 3. Configure SSH access from your computer to laptop for `sysadmin` account
 
-- Install SSH key
+3.1. Install SSH key
 
 ```bash
 $> ssh-copy-id -i ~/.ssh/id_ed25519.pub edw-sysadmin@192.168.56.3
 ```
 
-3. Clone this repository and provision the target computer computer:
+4. Clone this repository and provision the target computer computer:
 
 ```bash
 $> git clone https://github.com/eaudeweb/ansible-php-workstation.git
