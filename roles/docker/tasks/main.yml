@@ -8,7 +8,6 @@
     name: "{{ docker_support_packages }}"
     state: "present"
 
-
 - name: Docker keyring
   ansible.builtin.get_url:
     url: 'https://download.docker.com/linux/ubuntu/gpg'
@@ -29,6 +28,11 @@
   ansible.builtin.apt:
     name: "{{ docker_packages }}"
     state: "present"
+
+- name: Adding user to Docker group
+  user: name={{ linux_account }}
+        groups=docker
+        append=yes
 
 - name: Start and enable Docker daemon
   become: yes

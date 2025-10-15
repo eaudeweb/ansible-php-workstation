@@ -31,5 +31,5 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub edw-sysadmin@192.168.56.3
 3. Provision work computer
 
 ```bash
-$> ansible-playbook -i hosts.yml -b playbook.yml -l 192.168.56.3
+$> ansible-playbook -i hosts.yml -b playbook.yml -l 192.168.56.3 --extra-vars "linux_account=cromanescu"
 ```
