@@ -113,3 +113,8 @@
     path: "/home/{{ linux_account }}/Applications/PHPStorm.tar.gz"
     state: "absent"
   when: "phpstorm_download_link != ''"
+
+- name: Install Bitwarden
+  ansible.builtin.apt:
+    deb: "{{ bitwarden_url }}"
+    state: "present"

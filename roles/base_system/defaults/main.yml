@@ -47,3 +47,4 @@ browser_packages:
   - brave-browser
 
 dbeaver_ce_url: 'https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb'
+bitwarden_url: 'https://bitwarden.com/download/?app=desktop&platform=linux&variant=deb'
