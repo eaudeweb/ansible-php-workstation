@@ -33,9 +33,32 @@ php_fpm_www_pool:
 php_fpm_conf_settings:
   - { option: "error_log", value: "syslog", section: "global" }
 
+php_xdebug_options:
+  - { option: "xdebug.mode", value: "develop,debug,gcstats,profile,trace" }
+  - { option: "xdebug.start_with_request", value: "yes" }
+  - { option: "xdebug.var_display_max_data", value: "1024" }
+  - { option: "xdebug.var_display_max_depth", value: "5" }
+  - { option: "xdebug.cli_color", value: "1" }
+
+php_opcache_options:
+  - { option: "opcache.enable", value: "1" }
+  - { option: "opcache.enable_cli", value: "1" }
+  - { option: "opcache.memory_consumption", value: "256" }
+  - { option: "opcache.max_wasted_percentage", value: "10" }
+  - { option: "opcache.interned_strings_buffer", value: "16" }
+  - { option: "opcache.max_accelerated_files", value: "40000" }
+  - { option: "opcache.revalidate_freq", value: "0" }
+  - { option: "opcache.validate_timestamps", value: "1" }
+  - { option: "opcache.fast_shutdown", value: "1" }
+  - { option: "opcache.enable_cli", value: "1" }
+  - { option: "opcache.save_comments", value: "1" }
+
 php74_ini_path: /etc/php/7.4/fpm/php.ini
 php74_pool_www_path: /etc/php/7.4/fpm/pool.d/www.conf
 php74_fpm_conf: /etc/php/7.4/fpm/php-fpm.conf
+php74_xdebug_ini_path: /etc/php/7.4/fpm/conf.d/20-xdebug.ini
+php74_xdebug_ini_cli_path: /etc/php/7.4/cli/conf.d/20-xdebug.ini
+php74_opcache_ini_path: /etc/php/7.4/fpm/conf.d/10-opcache.ini
 php74_packages:
   - php7.4
   - php7.4-apcu
@@ -75,6 +98,9 @@ php74_packages:
 php81_ini_path: /etc/php/8.1/fpm/php.ini
 php81_pool_www_path: /etc/php/8.1/fpm/pool.d/www.conf
 php81_fpm_conf: /etc/php/8.1/fpm/php-fpm.conf
+php81_xdebug_ini_path: /etc/php/8.1/fpm/conf.d/20-xdebug.ini
+php81_xdebug_ini_cli_path: /etc/php/8.1/cli/conf.d/20-xdebug.ini
+php81_opcache_ini_path: /etc/php/8.1/fpm/conf.d/10-opcache.ini
 php81_packages:
   - php8.1
   - php8.1-apcu
@@ -117,6 +143,9 @@ php81_packages:
 php82_ini_path: /etc/php/8.2/fpm/php.ini
 php82_pool_www_path: /etc/php/8.2/fpm/pool.d/www.conf
 php82_fpm_conf: /etc/php/8.2/fpm/php-fpm.conf
+php82_xdebug_ini_path: /etc/php/8.2/fpm/conf.d/20-xdebug.ini
+php82_xdebug_ini_cli_path: /etc/php/8.2/cli/conf.d/20-xdebug.ini
+php82_opcache_ini_path: /etc/php/8.2/fpm/conf.d/10-opcache.ini
 php82_packages:
   - php8.2
   - php8.2-apcu
@@ -158,6 +187,9 @@ php82_packages:
 php83_ini_path: /etc/php/8.3/fpm/php.ini
 php83_pool_www_path: /etc/php/8.3/fpm/pool.d/www.conf
 php83_fpm_conf: /etc/php/8.3/fpm/php-fpm.conf
+php83_xdebug_ini_path: /etc/php/8.3/fpm/conf.d/20-xdebug.ini
+php83_xdebug_ini_cli_path: /etc/php/8.3/cli/conf.d/20-xdebug.ini
+php83_opcache_ini_path: /etc/php/8.3/fpm/conf.d/10-opcache.ini
 php83_packages:
   - php8.3
   - php8.3-apcu

@@ -30,6 +30,9 @@
   ansible.builtin.apt:
     name: "{{ php74_packages }}"
     state: "present"
+  notify:
+    - Restart php 7.4 FPM
+    - Restart nginx
 
 - name: Configure PHP 7.4 default settings
   community.general.ini_file:
@@ -38,6 +41,9 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_default_settings }}"
+  notify:
+    - Restart php 7.4 FPM
+    - Restart nginx
 
 - name: Configure PHP 7.4 FPM www.conf
   community.general.ini_file:
@@ -48,14 +54,47 @@
   with_items: "{{ php_fpm_www_pool }}"
   vars:
     php_version: '7.4'
+  notify:
+    - Restart php 7.4 FPM
+    - Restart nginx
 
-- name: Apply php-fpm.conf settings
+- name: Apply PHP 7.4 php-fpm.conf settings
   community.general.ini_file:
     dest: "{{ php74_fpm_conf }}"
     option: "{{ item.option }}"
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_fpm_conf_settings }}"
+  notify:
+    - Restart php 7.4 FPM
+    - Restart nginx
+
+- name: Apply PHP 7.4 XDebug settings
+  community.general.ini_file:
+    dest: "{{ php74_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 7.4 FPM
+    - Restart nginx
+
+- name: Apply PHP 7.4 XDebug CLI settings
+  community.general.ini_file:
+    dest: "{{ php74_xdebug_ini_cli_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+
+- name: Apply PHP 7.4 Opcache settings
+  community.general.ini_file:
+    dest: "{{ php74_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 7.4 FPM
+    - Restart nginx
 
 # 8.1
 
@@ -63,6 +102,9 @@
   ansible.builtin.apt:
     name: "{{ php81_packages }}"
     state: "present"
+  notify:
+    - Restart php 8.1 FPM
+    - Restart nginx
 
 - name: Configure PHP 8.1 php.ini
   community.general.ini_file:
@@ -71,6 +113,9 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_default_settings }}"
+  notify:
+    - Restart php 8.1 FPM
+    - Restart nginx
 
 - name: Configure PHP 8.1 FPM www.conf
   community.general.ini_file:
@@ -81,6 +126,9 @@
   with_items: "{{ php_fpm_www_pool }}"
   vars:
     php_version: '8.1'
+  notify:
+    - Restart php 8.1 FPM
+    - Restart nginx
 
 - name: Apply PHP 8.1 php-fpm.conf settings
   community.general.ini_file:
@@ -89,6 +137,36 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_fpm_conf_settings }}"
+  notify:
+    - Restart php 8.1 FPM
+    - Restart nginx
+
+- name: Apply PHP 8.1 XDebug settings
+  community.general.ini_file:
+    dest: "{{ php81_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 8.1 FPM
+    - Restart nginx
+
+- name: Apply PHP 8.1 XDebug CLI settings
+  community.general.ini_file:
+    dest: "{{ php81_xdebug_ini_cli_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+
+- name: Apply PHP 8.1 Opcache settings
+  community.general.ini_file:
+    dest: "{{ php81_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 8.1 FPM
+    - Restart nginx
 
 # 8.2
 
@@ -96,6 +174,9 @@
   ansible.builtin.apt:
     name: "{{ php82_packages }}"
     state: "present"
+  notify:
+    - Restart php 8.2 FPM
+    - Restart nginx
 
 - name: Configure PHP 8.2 default settings
   community.general.ini_file:
@@ -104,6 +185,9 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_default_settings }}"
+  notify:
+    - Restart php 8.2 FPM
+    - Restart nginx
 
 - name: Configure PHP 8.2 FPM www.conf
   community.general.ini_file:
@@ -114,6 +198,9 @@
   with_items: "{{ php_fpm_www_pool }}"
   vars:
     php_version: '8.2'
+  notify:
+    - Restart php 8.2 FPM
+    - Restart nginx
 
 - name: Apply PHP 8.2 php-fpm.conf settings
   community.general.ini_file:
@@ -122,6 +209,36 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_fpm_conf_settings }}"
+  notify:
+    - Restart php 8.2 FPM
+    - Restart nginx
+
+- name: Apply PHP 8.2 XDebug settings
+  community.general.ini_file:
+    dest: "{{ php82_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 8.2 FPM
+    - Restart nginx
+
+- name: Apply PHP 8.2 XDebug CLI settings
+  community.general.ini_file:
+    dest: "{{ php82_xdebug_ini_cli_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+
+- name: Apply PHP 8.2 Opcache settings
+  community.general.ini_file:
+    dest: "{{ php82_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 8.2 FPM
+    - Restart nginx
 
 # 8.3
 
@@ -129,6 +246,9 @@
   ansible.builtin.apt:
     name: "{{ php83_packages }}"
     state: "present"
+  notify:
+    - Restart php 8.3 FPM
+    - Restart nginx
 
 - name: Configure PHP 8.3 default settings
   community.general.ini_file:
@@ -137,6 +257,9 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_default_settings }}"
+  notify:
+    - Restart php 8.3 FPM
+    - Restart nginx
 
 - name: Configure PHP 8.3 FPM www.conf
   community.general.ini_file:
@@ -147,6 +270,9 @@
   with_items: "{{ php_fpm_www_pool }}"
   vars:
     php_version: '8.3'
+  notify:
+    - Restart php 8.3 FPM
+    - Restart nginx
 
 - name: Apply PHP 8.3 php-fpm.conf settings
   community.general.ini_file:
@@ -155,3 +281,33 @@
     value: "{{ item.value|default(omit) }}"
     section: "{{ item.section }}"
   with_items: "{{ php_fpm_conf_settings }}"
+  notify:
+    - Restart php 8.3 FPM
+    - Restart nginx
+
+- name: Apply PHP 8.3 XDebug settings
+  community.general.ini_file:
+    dest: "{{ php83_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 8.3 FPM
+    - Restart nginx
+
+- name: Apply PHP 8.3 XDebug CLI settings
+  community.general.ini_file:
+    dest: "{{ php83_xdebug_ini_cli_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+
+- name: Apply PHP 8.3 Opcache settings
+  community.general.ini_file:
+    dest: "{{ php83_xdebug_ini_path }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value|default(omit) }}"
+  with_items: "{{ php_xdebug_options }}"
+  notify:
+    - Restart php 8.3 FPM
+    - Restart nginx
