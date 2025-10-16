@@ -71,3 +71,45 @@
   ansible.builtin.apt:
     deb: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
     state: "present"
+
+- name: Load PHPStorm version information
+  uri:
+    url: "https://data.services.jetbrains.com/products/releases?code=PS&latest=true"
+    return_content: yes
+  register: php_versions
+
+- name: Find latest PHPStorm version
+  no_log: True
+  set_fact:
+    phpstorm_download_link: "{{ php_versions.json | json_query(linkquery) }}"
+  vars:
+    linkquery: "PS[0].downloads.linux.link"
+
+- name: Create Applications directory
+  ansible.builtin.file:
+    path: "/home/{{ linux_account }}/Applications"
+    state: directory
+    mode: "0755"
+    owner: "{{ linux_account }}"
+  when: "phpstorm_download_link != ''"
+
+- name: Download PHPStorm
+  ansible.builtin.get_url:
+      url: "{{ phpstorm_download_link }}"
+      dest: "/home/{{ linux_account }}/Applications/PHPStorm.tar.gz"
+  when: "phpstorm_download_link != ''"
+
+- name: Unpack PHPStorm
+  ansible.builtin.unarchive:
+    src: "/home/{{ linux_account }}/Applications/PHPStorm.tar.gz"
+    dest: "/home/{{ linux_account }}/Applications/"
+    remote_src: Yes
+    owner: "{{ linux_account }}"
+    group: "{{ linux_account }}"
+  when: "phpstorm_download_link != ''"
+
+- name: Delete PHPStorm archive
+  ansible.builtin.file:
+    path: "/home/{{ linux_account }}/Applications/PHPStorm.tar.gz"
+    state: "absent"
+  when: "phpstorm_download_link != ''"
