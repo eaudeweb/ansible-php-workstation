@@ -1,44 +1,18 @@
-# How to use this repository
+# PHP Developer Workstation
 
-1. You need to have a clean laptop with Linux Mint 22.02 installed (might work with other similar versions like 20, 22.04, 24.02 etc.). During the initial setup you are going to create an account. For this example let's assume it's called `cromanescu`.
+This repository configures a clean Linux Mint installation as developer workstation. It configures various software components that allows to manage PHP projects (develop, debug etc.).
 
-2. Configure SSH on the laptop (to provision packages via SSH)
+Main features:
 
-2.1. Install the SSH daemon
+1. NGINX web server
+2. Development tools (PHP 7.4, 8.1, 8.2 and 8.3 with development configuration including XDebug, mc, flameshot, git, magic-wormhole, vim)
+3. IDEs: Visual Studio Code and PHPStorm trial version
+4. Discord for chat
+5. Brave and Firefox browsers
+6. Bitwarden password manager
+7. Docker with the [Drupal Sidekick](http://github.com/eaudeweb/drupal.sidekick) development stack including: Mailtrap, Varnish, Apache Solr, MariaDB
 
-```bash
-$> sudo apt install openssh-server
-$> sudo systemctl enable ssh
-$> sudo systemctl start ssh
-```
+It contains an [Ansible playbook](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) and appropriate Ansible roles which install and configure the software components mentioned above on a target computer using SSH.
 
-2.2. Create a sysadmin account and set a complex password (You'll only need it now to configure sudo/SSH - no need to remember it)
 
-```bash
-$> sudo useradd -m -g sudo edw-sysadmin
-$> sudo passwd edw-sysadmin
-```
-
-2.3. Configure sudo group without password in /etc/sudoers
-
-```bash
-$> sudo su edw-sysadmin
-# Here you will enter password
-$> echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/dont-prompt-$USER-for-sudo-password"
-```
-
-3. Configure SSH access from your computer to laptop for `sysadmin` account
-
-3.1. Install SSH key
-
-```bash
-$> ssh-copy-id -i ~/.ssh/id_ed25519.pub edw-sysadmin@192.168.56.3
-```
-
-4. Clone this repository and provision the target computer computer:
-
-```bash
-$> git clone https://github.com/eaudeweb/ansible-php-workstation.git
-$> cd ansible-php-workstation
-$> ansible-playbook -i hosts.yml -b playbook.yml -l 192.168.56.3 --extra-vars "linux_account=cromanescu"
-```
+Read the [installation documentation](https://eaudeweb.ro/ansible-php-workstation/).

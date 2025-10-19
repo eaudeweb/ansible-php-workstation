@@ -1,11 +1,4 @@
-# PHP Developer Workstation
-
-This repository helps configuring a clean Linux Mint installation as developer workstation. It configures various software components that allows to manage PHP projects (develop, debug etc.).
-
-
-## How it works
-
-This repository contains an [Ansible playbook](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html) and appropriate Ansible roles which installs and configures the software components mentioned above on a target computer using SSH.
+# Installation instructions
 
 To proceed, you need the following items:
 
@@ -14,7 +7,11 @@ To proceed, you need the following items:
 3. A bootable USB Stick with [Linux Mint](https://linuxmint.com/download.php).
 
 
+There are two main methods to proceed with the installation and configuration of the PHP Developer Workstation:
+1) Using Ansible remotely from your computer
+2) Running Ansible locally on the target computer
+This guide is now following the first method, installing the packages remotely from your computer to the new target computer.
 
-1. [Install Linux Mint](01-install-linux.md)
-
-
+1. [Install Linux Mint](01-remote-install-linux.md)
+2. [Configure remote SSH access](02-remote-create-account.md)
+3. [Provision the software packages](03-provision-software.md)
