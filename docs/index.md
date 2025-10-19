@@ -14,3 +14,7 @@ To proceed, you need the following items:
 3. A bootable USB Stick with [Linux Mint](https://linuxmint.com/download.php).
 
 
+
+1. [Install Linux Mint](01-install-linux.md)
+
+
